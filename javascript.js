@@ -43,17 +43,16 @@ function buildGrid(squareSize, gridSize) {
         square.style.height = `${squareSize}px`;
 
         container.append(square);
-
-        square.addEventListener("mouseenter", (event) => {
-            // event.target.classList.add("hover");
-            event.target.style.backgroundColor = currentColor;
-        })
     }
 }
 
 
 function changeColor(newColor) {
     currentColor = newColor;
+}
+
+function changeCellColor(cell) {
+    cell = currentColor;
 }
 
 
@@ -64,25 +63,38 @@ function removeAllChildren(parent) {
 }
 
 
+function startDrawing() {
+    for (const cell of container.children) {
+        cell.addEventListener("mouseover", (event) => {
+            event.target.style.backgroundColor = currentColor;
+        });
+    }
+}
+
+
+
 
 
 // Event listeners
-gridSizeButton.addEventListener("click", () => {
-    getGridSize();
-})
-
-
 addEventListener("load", (event) => {
     buildGrid(199, 16);
 });
+
+gridSizeButton.addEventListener("click", () => {
+    getGridSize();
+})
 
 colorSelector.addEventListener("input", (event) => {
     currentColor = event.target.value;
 })
 
 resetButton.addEventListener("click", (event) => {
+    currentColor = "#000000";
+    colorSelector.value = "#000000";
+
     for (const cell of container.children) {
-        // Do something with childElement
         cell.style.backgroundColor = "white";
     }
 })
+
+container.addEventListener("mousedown", startDrawing);
