@@ -1,5 +1,6 @@
 * {
     margin: 0 auto;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -12,16 +13,10 @@
 }
 
 .square {
-    margin: 0;
-    padding: 0;
-    /* width: 200px;
-    height: 200px; */
     background-color: white;
     border: .25px solid black;
-    flex-grow: 1;
-    flex-shrink: 1;
 }
 
-.highlight {
-    background-color: yellowgreen;
+.hover {
+    background-color: black;
 }
