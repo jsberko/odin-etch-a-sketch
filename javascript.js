@@ -1,8 +1,10 @@
 // Selectors
 const container = document.querySelector(".container");
 const gridSizeButton = document.querySelector("#gridSize");
+const colorSelector = document.querySelector("#color");
 
-
+// Variables
+let currentColor = "#000000";
 
 
 // Functions
@@ -19,7 +21,7 @@ function getGridSize() {
 
 
 function getSquareSize(userInput, gridSize) {
-    let squareSize = 956 / userInput
+    let squareSize = 796 / userInput
 
     resetGrid(squareSize, gridSize);
 }
@@ -42,9 +44,15 @@ function buildGrid(squareSize, gridSize) {
         container.append(square);
 
         square.addEventListener("mouseenter", (event) => {
-            event.target.classList.add("hover");
+            // event.target.classList.add("hover");
+            event.target.style.backgroundColor = currentColor;
         })
     }
+}
+
+
+function changeColor(newColor) {
+    currentColor = newColor;
 }
 
 
@@ -64,5 +72,9 @@ gridSizeButton.addEventListener("click", () => {
 
 
 addEventListener("load", (event) => {
-    buildGrid(239, 16);
+    buildGrid(199, 16);
 });
+
+colorSelector.addEventListener("change", (event) => {
+    currentColor = event.target.value;
+})
