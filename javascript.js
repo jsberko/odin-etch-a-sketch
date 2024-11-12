@@ -2,6 +2,7 @@
 const container = document.querySelector(".container");
 const gridSizeButton = document.querySelector("#gridSize");
 const colorSelector = document.querySelector("#color");
+const resetButton = document.querySelector("#reset");
 
 // Variables
 let currentColor = "#000000";
@@ -75,6 +76,13 @@ addEventListener("load", (event) => {
     buildGrid(199, 16);
 });
 
-colorSelector.addEventListener("change", (event) => {
+colorSelector.addEventListener("input", (event) => {
     currentColor = event.target.value;
+})
+
+resetButton.addEventListener("click", (event) => {
+    for (const cell of container.children) {
+        // Do something with childElement
+        cell.style.backgroundColor = "white";
+    }
 })
