@@ -9,15 +9,30 @@ let currentColor = "#000000";
 
 
 // Functions
+// function getGridSize() {
+//     let userInput = parseInt(prompt("Enter a number between 1-100"));
+//     let gridSize = userInput * userInput;
+
+//     while (isNaN(userInput) || !userInput || userInput < 1 || userInput > 100) {
+//         userInput = prompt("Invalid input. Please enter a number between 1-100");
+//     }
+
+//     getSquareSize(userInput, gridSize);
+// }
+
 function getGridSize() {
     let userInput = parseInt(prompt("Enter a number between 1-100"));
-    let gridSize = userInput * userInput;
 
-    while (isNaN(userInput) || !userInput || userInput < 1 || userInput > 100) {
+    while (isNaN(userInput) || !userInput || userInput === null || userInput < 1 || userInput > 100) {
         userInput = prompt("Invalid input. Please enter a number between 1-100");
-    }
 
-    getSquareSize(userInput, gridSize);
+        if (userInput > 0 && userInput <= 100) {
+            userInput = parseInt(userInput);
+            let gridSize = userInput ** 2;
+
+            getSquareSize(userInput, gridSize);
+        }
+    }
 }
 
 
