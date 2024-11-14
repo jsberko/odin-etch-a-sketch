@@ -1,6 +1,5 @@
 // Selectors
 const selectGridSizeButton = document.querySelector("#gridSize");
-const resetButton = document.querySelector("#reset");
 const clearButton = document.querySelector("#clear");
 const gridContainer = document.querySelector(".container");
 const colorSelector = document.querySelector("#color");
@@ -62,7 +61,7 @@ function emptyGridContainer() {
 function buildGrid(cellSize, gridSize) {
     for (let i = 1; i <= gridSize; i++) {
         const cell = document.createElement("div");
-        cell.classList.add("cell");
+        cell.classList.add("cell", "cell-border");
 
         cell.style.width = `${cellSize}px`;
         cell.style.height = `${cellSize}px`;
@@ -103,14 +102,14 @@ selectGridSizeButton.addEventListener("click", () => {
 })
 
 
-resetButton.addEventListener("click", () => {
-    if (confirm("Reset the grid?")) {
-        emptyGridContainer();
-        buildGrid(199, 16);
-    }
-    currentColor = "#000000";
-    colorSelector.value = "#000000";
-})
+// resetButton.addEventListener("click", () => {
+//     if (confirm("Reset the grid?")) {
+//         emptyGridContainer();
+//         buildGrid(199, 16);
+//     }
+//     currentColor = "#000000";
+//     colorSelector.value = "#000000";
+// })
 
 
 clearButton.addEventListener("click", (event) => {
