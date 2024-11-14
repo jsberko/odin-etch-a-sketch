@@ -15,7 +15,6 @@ let currentColor = "#000000";
 
 
 // Functions
-
 function getGridSize() {
     let userInput;
 
@@ -99,13 +98,13 @@ function toggleCellBorder() {
 
 
 // Event listeners
-
 document.addEventListener("DOMContentLoaded", () => buildGrid(199, 16));
 
 
 selectGridSizeButton.addEventListener("click", () => {
     getGridSize();
 })
+
 
 toggleCellBorderButton.addEventListener("click", () => {
     toggleCellBorder();
