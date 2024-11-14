@@ -12,9 +12,9 @@
     border: black solid 2px;
 }
 
-.square {
+.cell {
     background-color: white;
-    border: .25px solid black;
+    border: .1px solid lightgrey;
 }
 
 .hover {

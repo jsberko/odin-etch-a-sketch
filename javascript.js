@@ -1,115 +1,140 @@
 // Selectors
-const container = document.querySelector(".container");
-const gridSizeButton = document.querySelector("#gridSize");
-const colorSelector = document.querySelector("#color");
+const selectGridSizeButton = document.querySelector("#gridSize");
 const resetButton = document.querySelector("#reset");
+const clearButton = document.querySelector("#clear");
+const gridContainer = document.querySelector(".container");
+const colorSelector = document.querySelector("#color");
 
-// Variables
+
+
+
+// Variable
 let currentColor = "#000000";
 
 
+
+
 // Functions
-// function getGridSize() {
-//     let userInput = parseInt(prompt("Enter a number between 1-100"));
-//     let gridSize = userInput * userInput;
-
-//     while (isNaN(userInput) || !userInput || userInput < 1 || userInput > 100) {
-//         userInput = prompt("Invalid input. Please enter a number between 1-100");
-//     }
-
-//     getSquareSize(userInput, gridSize);
-// }
 
 function getGridSize() {
-    let userInput = parseInt(prompt("Enter a number between 1-100"));
+    let userInput;
 
-    while (isNaN(userInput) || !userInput || userInput === null || userInput < 1 || userInput > 100) {
-        userInput = prompt("Invalid input. Please enter a number between 1-100");
+    while (true) {
+        userInput = prompt("Please enter a number between 1 and 100:", 40);
 
-        if (userInput > 0 && userInput <= 100) {
-            userInput = parseInt(userInput);
+        if (userInput === null) {
+            break;
+        }
+
+        userInput = parseInt(userInput);
+
+        if (!isNaN(userInput) && userInput > 0 && userInput <= 100) {
             let gridSize = userInput ** 2;
-
-            getSquareSize(userInput, gridSize);
+            calculateCellSize(userInput, gridSize)
+            break;
+        } else {
+            alert("Invalid input. Please enter a number between 1 and 100:");
         }
     }
 }
 
 
-function getSquareSize(userInput, gridSize) {
-    let squareSize = 796 / userInput
+function calculateCellSize(userInput, gridSize) {
+    let cellSize = 796 / userInput;
 
-    resetGrid(squareSize, gridSize);
+    resetGrid(cellSize, gridSize);
 }
 
 
-function resetGrid(squareSize, gridSize) {
-    removeAllChildren(container);
-    buildGrid(squareSize, gridSize);
+function resetGrid(cellSize, gridSize) {
+    emptyGridContainer();
+    buildGrid(cellSize, gridSize);
 }
 
 
-function buildGrid(squareSize, gridSize) {
+function emptyGridContainer() {
+    while (gridContainer.firstChild) {
+        gridContainer.removeChild(gridContainer.firstChild);
+    }
+}
+
+
+function buildGrid(cellSize, gridSize) {
     for (let i = 1; i <= gridSize; i++) {
-        const square = document.createElement("div");
-        square.classList.add("square");
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
 
-        square.style.width = `${squareSize}px`;
-        square.style.height = `${squareSize}px`;
+        cell.style.width = `${cellSize}px`;
+        cell.style.height = `${cellSize}px`;
 
-        container.append(square);
+        gridContainer.append(cell);
     }
 }
 
 
-function changeColor(newColor) {
-    currentColor = newColor;
-}
-
-function changeCellColor(cell) {
-    cell = currentColor;
-}
-
-
-function removeAllChildren(parent) {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
+function styleCell(event) {
+    event.target.style.backgroundColor = currentColor;
 }
 
 
 function startDrawing() {
-    for (const cell of container.children) {
-        cell.addEventListener("mouseover", (event) => {
-            event.target.style.backgroundColor = currentColor;
-        });
+    for (const cell of gridContainer.children) {
+        cell.addEventListener("mouseover", styleCell);
     }
 }
 
+
+function stopDrawing() {
+    for (const cell of gridContainer.children) {
+        cell.removeEventListener("mouseover", styleCell);
+    }
+}
 
 
 
 
 // Event listeners
-addEventListener("load", (event) => {
-    buildGrid(199, 16);
-});
 
-gridSizeButton.addEventListener("click", () => {
+document.addEventListener("DOMContentLoaded", () => buildGrid(199, 16));
+
+
+selectGridSizeButton.addEventListener("click", () => {
     getGridSize();
 })
+
+
+resetButton.addEventListener("click", () => {
+    if (confirm("Reset the grid?")) {
+        emptyGridContainer();
+        buildGrid(199, 16);
+    }
+    currentColor = "#000000";
+    colorSelector.value = "#000000";
+})
+
+
+clearButton.addEventListener("click", (event) => {
+    if (confirm("Clear the current grid?")) {
+        currentColor = "#000000";
+        colorSelector.value = "#000000";
+
+        for (const cell of gridContainer.children) {
+            cell.style.backgroundColor = "white";
+        }
+    }
+})
+
 
 colorSelector.addEventListener("input", (event) => {
     currentColor = event.target.value;
 })
 
-resetButton.addEventListener("click", (event) => {
-    currentColor = "#000000";
-    colorSelector.value = "#000000";
 
-    for (const cell of container.children) {
-        cell.style.backgroundColor = "white";
-    }
+gridContainer.addEventListener("mousedown", () => {
+    startDrawing();
 })
 
-container.addEventListener("mousedown", startDrawing);
+
+gridContainer.addEventListener("mouseup", () => {
+    stopDrawing();
+})
