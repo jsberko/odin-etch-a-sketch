@@ -1,6 +1,7 @@
 // Selectors
 const selectGridSizeButton = document.querySelector("#gridSize");
 const clearButton = document.querySelector("#clear");
+const toggleCellBorderButton = document.querySelector("#toggleCellBorder");
 const gridContainer = document.querySelector(".container");
 const colorSelector = document.querySelector("#color");
 
@@ -90,6 +91,11 @@ function stopDrawing() {
 }
 
 
+function toggleCellBorder() {
+    for (const cell of gridContainer.children) {
+        cell.classList.toggle("cell-border");
+    }
+}
 
 
 // Event listeners
@@ -101,15 +107,9 @@ selectGridSizeButton.addEventListener("click", () => {
     getGridSize();
 })
 
-
-// resetButton.addEventListener("click", () => {
-//     if (confirm("Reset the grid?")) {
-//         emptyGridContainer();
-//         buildGrid(199, 16);
-//     }
-//     currentColor = "#000000";
-//     colorSelector.value = "#000000";
-// })
+toggleCellBorderButton.addEventListener("click", () => {
+    toggleCellBorder();
+})
 
 
 clearButton.addEventListener("click", (event) => {
