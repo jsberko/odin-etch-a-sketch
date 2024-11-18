@@ -88,6 +88,7 @@ function styleCell(event) {
 function startDrawing() {
     for (const cell of gridContainer.children) {
         cell.addEventListener("mouseover", styleCell);
+        cell.addEventListener("touchmove", styleCell);
     }
 }
 
@@ -95,6 +96,7 @@ function startDrawing() {
 function stopDrawing() {
     for (const cell of gridContainer.children) {
         cell.removeEventListener("mouseover", styleCell);
+        cell.removeEventListener("touchmove", styleCell);
     }
 }
 
@@ -159,3 +161,15 @@ gridContainer.addEventListener("mouseleave", () => {
     stopDrawing();
 })
 
+// Touch Event Drawing Listeners 
+gridContainer.addEventListener("touchstart", () => {
+    startDrawing();
+})
+
+gridContainer.addEventListener("touchend", () => {
+    stopDrawing();
+})
+
+// gridContainer.addEventListener("mouseleave", () => {
+//     stopDrawing();
+// })
