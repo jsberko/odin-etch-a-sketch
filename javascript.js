@@ -162,8 +162,13 @@ gridContainer.addEventListener("mouseleave", () => {
 })
 
 // Touch Event Drawing Listeners 
-gridContainer.addEventListener("touchstart", () => {
+gridContainer.addEventListener("touchstart", (event) => {
+    event.preventDefault();
     startDrawing();
+})
+
+gridContainer.addEventListener("touchmove", (event) => {
+    event.preventDefault();
 })
 
 gridContainer.addEventListener("touchend", () => {
