@@ -5,21 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Skranji:wght@400;700&family=Tilt+Prism&display=swap"
+        rel="stylesheet">
+
     <title>Odin Etch-A-Sketch</title>
 </head>
 
 <body>
-    <div class="controls">
-        <button id="gridSize">New Grid</button>
-        <input id="color" type="color">
-        <button id="clear">Clear</button>
-        <button id="toggleCellBorder">Toggle Cell Border</button>
+    <div class="frame">
+        <div class="content-body-margin">
+            <div class="knob"></div>
+        </div>
+
+        <div class="content-body">
+            <div class="content-header">
+                <h1 id="title">Etch-A-Sketch</h1>
+            </div>
+
+            <div class="grid-container">
+            </div>
+
+            <div class="content-footer">
+                <button id="gridSize">Create New Grid</button>
+                <input id="color" type="color">
+                <button id="toggleCellBorder">Toggle Cell Border</button>
+                <button id="clear">Clear Current</button>
+            </div>
+        </div>
+
+        <div class="content-body-margin">
+            <div class="knob"></div>
+        </div>
     </div>
 
-
-    <div class="container">
-
-    </div>
     <script src="javascript.js"></script>
 </body>
 

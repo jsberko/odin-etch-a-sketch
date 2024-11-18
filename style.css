@@ -2,15 +2,84 @@
     margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
 }
 
-.container {
+.frame {
+    display: flex;
+    width: 1000px;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    margin-top: 15px;
+    border: 2px black solid;
+    border-radius: 50px;
+}
+
+.content-body-margin {
+    width: 200px;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.knob {
+    background-color: white;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin: 25px;
+    border: 2px black solid;
+}
+
+.content-body {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 800px;
+}
+
+.content-header,
+.content-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 100px;
+}
+
+
+h1 {
+    font-weight: 700;
+    font-size: 4em;
+    color: gold;
+}
+
+button,
+input[type="color"] {
+    background-color: gold;
+    height: 60px;
+    width: 80px;
+    border-radius: 10px;
+}
+
+button:hover,
+input[type="color"]:hover {
+    cursor: pointer;
+}
+
+.grid-container {
     display: flex;
     flex-wrap: wrap;
-    width: 800px;
-    height: 800px;
+    width: 600px;
+    height: 600px;
     border: black solid 2px;
 }
+
 
 .cell {
     background-color: white;
@@ -22,4 +91,59 @@
 
 .hover {
     background-color: black;
+}
+
+
+
+//Media Listeners
+@media (max-width: 960px) {
+    .frame {
+        width: 100%;
+    }
+
+    .content-body-margin {
+        width: 100px;
+    }
+
+    /* .knob {
+        display: none;
+    } */
+}
+
+
+@media (max-width: 800px) {
+    .frame {
+        width: 100%;
+    }
+
+    .content-body-margin {
+        display: none;
+    }
+
+    .knob {
+        display: none;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .frame {
+        width: 400px;
+        border-radius: 0px;
+    }
+
+    h1 {
+        font-size: 3em;
+    }
+
+    .content-header,
+    .content-footer {
+        width: 400px;
+    }
+
+    .grid-container {
+        width: 400px;
+        height: 400px;
+    }
 }

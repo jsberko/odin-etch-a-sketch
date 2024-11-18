@@ -2,7 +2,7 @@
 const selectGridSizeButton = document.querySelector("#gridSize");
 const clearButton = document.querySelector("#clear");
 const toggleCellBorderButton = document.querySelector("#toggleCellBorder");
-const gridContainer = document.querySelector(".container");
+const gridContainer = document.querySelector(".grid-container");
 const colorSelector = document.querySelector("#color");
 
 
@@ -39,9 +39,18 @@ function getGridSize() {
 
 
 function calculateCellSize(userInput, gridSize) {
-    let cellSize = 796 / userInput;
+    let cellSize = getScreenSize() / userInput;
 
     resetGrid(cellSize, gridSize);
+}
+
+
+function getScreenSize() {
+    if (gridContainer.clientWidth < 596) {
+        return 396;
+    } else {
+        return 596;
+    }
 }
 
 
@@ -97,8 +106,17 @@ function toggleCellBorder() {
 }
 
 
+function getInitialScreenSize() {
+    if (gridContainer.clientWidth < 596) {
+        return 396 / 4;
+    } else {
+        return 596 / 4;
+    }
+}
+
+
 // Event listeners
-document.addEventListener("DOMContentLoaded", () => buildGrid(199, 16));
+document.addEventListener("DOMContentLoaded", () => buildGrid(getInitialScreenSize(), 16));
 
 
 selectGridSizeButton.addEventListener("click", () => {
@@ -128,11 +146,16 @@ colorSelector.addEventListener("input", (event) => {
 })
 
 
+// Mouse Event Drawing Listeners 
 gridContainer.addEventListener("mousedown", () => {
     startDrawing();
 })
 
-
 gridContainer.addEventListener("mouseup", () => {
     stopDrawing();
 })
+
+gridContainer.addEventListener("mouseleave", () => {
+    stopDrawing();
+})
+
