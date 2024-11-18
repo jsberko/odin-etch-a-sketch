@@ -7,20 +7,20 @@
 
 .frame {
     display: flex;
-    width: 1000px;
-    height: 800px;
+    width: 950px;
+    height: 750px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: red;
-    margin-top: 15px;
+    margin-top: 10px;
     border: 2px black solid;
     border-radius: 50px;
 }
 
 .content-body-margin {
-    width: 200px;
-    height: 800px;
+    width: 175px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -32,7 +32,7 @@
     height: 100px;
     width: 100px;
     border-radius: 50%;
-    margin: 25px;
+    margin-bottom: 25px;
     border: 2px black solid;
 }
 
@@ -40,7 +40,7 @@
     display: flex;
     flex-direction: column;
     width: 600px;
-    height: 800px;
+    height: 100%;
 }
 
 .content-header,
@@ -95,28 +95,20 @@ input[type="color"]:hover {
 
 
 
-//Media Listeners
-@media (max-width: 960px) {
+
+@media (max-width: 952px) {
     .frame {
         width: 100%;
-    }
-
-    .content-body-margin {
-        width: 100px;
     }
 }
 
 
-@media (max-width: 800px) {
+@media (max-width: 831px) {
     .frame {
         width: 100%;
     }
 
     .content-body-margin {
-        display: none;
-    }
-
-    .knob {
         display: none;
     }
 }
